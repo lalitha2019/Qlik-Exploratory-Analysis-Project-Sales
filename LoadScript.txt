@@ -1,0 +1,28 @@
+**Note:
+Played with data, reducing data sometimes using where clause,  including / excluding fields, joining data various ways, and saving screenshots of charts in the process, when any interesting insights were revealed. The final script is the last script, but not the one used for all charts. 
+------------------------------
+
+set NullInterpret ='';
+
+Sales:
+LOAD
+    distinct product_id,
+    store_id,
+    "date",
+    Year("date") AS sales_year,
+    Month("date") AS sales_month,
+    Day("date") AS sales_day,
+    sales,
+    revenue,
+    stock,
+    price,
+    promo_type_1,
+    promo_bin_1,
+    promo_type_2,
+    promo_bin_2,
+    promo_discount_2,
+    promo_discount_type_2
+FROM [lib://DataFiles/sales.csv]
+(txt, codepage is 28591, embedded labels, delimiter is ',', msq);
+//where revenue=0 and sales<>0;
+
